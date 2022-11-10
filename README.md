@@ -4,7 +4,7 @@
    the merge sort, and return the list after sorting it in ascending order.
 
    * The implementation must have time complexity $O(n \log n)$ and require
-     auxiliary $O(1)$ space.
+     auxiliary space up to $O(\log n)$.
    * You are not allowed to create new `node` structs in `merge`, `split` or
      `mergeSort` functions.
    * You are not allowed to use any packages apart from
