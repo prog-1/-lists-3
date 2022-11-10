@@ -38,6 +38,7 @@ func TestMerge(t *testing.T) {
 	}{
 		{"empty", Input{[]int{}, []int{}}, []int{}},
 		{"1", Input{[]int{1}, []int{2}}, []int{1, 2}},
+		{"2", Input{[]int{1, 4}, []int{2, 3}}, []int{1, 2, 3, 4}},
 	} {
 		got := merge(SliceToList(tc.input.a), SliceToList(tc.input.b))
 		if s := ListToSlice(got); !reflect.DeepEqual(s, tc.want) {

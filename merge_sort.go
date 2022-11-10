@@ -32,18 +32,18 @@ func Print(l *node) {
 // 2.
 func merge(a, b *node) (head *node) {
 	for cur := &head; a != nil || b != nil; cur = &(*cur).next {
-		if a != nil && b != nil && a.v < b.v { // a is smaller
-			*cur = a
-			a = a.next
-		} else if a != nil && b != nil && b.v < a.v { // b is smaller
+		if a == nil {
 			*cur = b
 			b = b.next
-		} else if a == nil && b != nil {
-			*cur = b
-			b = b.next
-		} else if b == nil && a != nil {
+		} else if b == nil {
 			*cur = a
 			a = a.next
+		} else if a.v < b.v {
+			*cur = a
+			a = a.next
+		} else {
+			*cur = b
+			b = b.next
 		}
 	}
 
@@ -62,7 +62,7 @@ func mergeSort(l *node) *node {
 }
 
 func main() {
-	a, b := SliceToList([]int{1, 4}), SliceToList([]int{2, 3})
+	a, b := SliceToList([]int{1}), SliceToList([]int{2})
 	l := merge(a, b)
 	Print(l)
 }
