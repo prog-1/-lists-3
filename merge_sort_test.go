@@ -14,8 +14,8 @@ func TestSplit(t *testing.T) {
 		init []int
 		want Want
 	}{
-		{"empty", []int{}, Want{[]int{}, []int{}}},
 		{"1", []int{1, 2}, Want{[]int{1}, []int{2}}},
+		{"2", []int{1, 2, 3, 4}, Want{[]int{1, 2}, []int{3, 4}}},
 	} {
 		a, b := split(SliceToList(tc.init))
 		if s := ListToSlice(a); !reflect.DeepEqual(s, tc.want.a) {
@@ -37,6 +37,7 @@ func TestMerge(t *testing.T) {
 		want  []int
 	}{
 		{"empty", Input{[]int{}, []int{}}, []int{}},
+		{"nil", Input{nil, nil}, []int{}},
 		{"1", Input{[]int{1}, []int{2}}, []int{1, 2}},
 		{"2", Input{[]int{1, 4}, []int{2, 3}}, []int{1, 2, 3, 4}},
 	} {
@@ -54,7 +55,7 @@ func TestMergeSort(t *testing.T) {
 		want  []int
 	}{
 		{"empty", []int{}, []int{}},
-		{"nil", nil, nil},
+		{"nil", nil, []int{}},
 		{"1", []int{4, 2, 1, 3}, []int{1, 2, 3, 4}},
 	} {
 		got := mergeSort(SliceToList(tc.input))

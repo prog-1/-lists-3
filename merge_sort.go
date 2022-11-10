@@ -27,9 +27,6 @@ func Print(l *node) {
 	fmt.Println()
 }
 
-// How to merge?
-// 1. Take the smallest element out of a and b
-// 2.
 func merge(a, b *node) (head *node) {
 	for cur := &head; a != nil || b != nil; cur = &(*cur).next {
 		if a == nil {
@@ -51,18 +48,35 @@ func merge(a, b *node) (head *node) {
 }
 
 func split(l *node) (a, b *node) {
-	// TODO
-	fmt.Println("Smth")
-	return nil, nil
+	// Calculating length:
+	var len int
+	for i := l; i != nil; i, len = i.next, len+1 {
+	}
+
+	if len < 2 {
+		panic("length must be >= 2")
+	}
+
+	a = l
+	m := &l                                         // m stands for middle
+	for i := 1; i < len/2; i, *m = i+1, (*m).next { // making m pointing on the last element of part a
+	}
+	b = (*m).next
+	(*m).next = nil // Breaking connection between a and b
+
+	return a, b
 }
 
 func mergeSort(l *node) *node {
-	// TODO
-	return nil
+	if l == nil || l.next == nil { // len < 1
+		return l
+	}
+	a, b := split(l)
+	a = mergeSort(a)
+	b = mergeSort(b)
+	return merge(a, b)
 }
 
 func main() {
-	a, b := SliceToList([]int{1}), SliceToList([]int{2})
-	l := merge(a, b)
-	Print(l)
+
 }
