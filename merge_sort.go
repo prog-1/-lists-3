@@ -1,5 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 type node struct {
 	v    int
 	next *node
@@ -47,4 +51,18 @@ func mergeSort(l *node) *node {
 	a, b := split(l)
 	l = merge(mergeSort(a), mergeSort(b))
 	return l
+}
+
+func print(a *node) {
+	for ; a != nil; a = a.next {
+		fmt.Print(" --> ", a.v)
+	}
+	fmt.Println(" --> |")
+}
+
+func main() {
+	l := &node{2, &node{4, &node{6, &node{3, &node{1, &node{8, nil}}}}}}
+	a1 := mergeSort(l)
+	print(a1)
+
 }
