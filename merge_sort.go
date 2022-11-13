@@ -22,21 +22,18 @@ func merge(a, b *node) *node {
 }
 
 func split(l *node) (a, b *node) {
-	r := l.next
-	for r != nil {
-		r = r.next
-		if r == nil {
-			break
-		}
-		r = r.next
-		l = l.next
+	len := 0
+	for n := l; n != nil; n = n.next {
+		len++
 	}
-	t := l.next
-	l.next = nil
-	for a.next != t {
-		a = a.next
+	a = l
+	xd := &l
+	for e := 1; e < len/2; e, *xd = e+1, (*xd).next {
 	}
-	a.next = l
+	b = (*xd).next
+	(*xd).next = nil
+
+	return a, b
 }
 
 func mergeSort(l *node) *node {
