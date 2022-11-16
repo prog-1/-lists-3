@@ -18,15 +18,11 @@ func merge(a, b *node) *node {
 		}
 		cur = cur.next
 	}
-	for a != nil {
+	if a != nil {
 		cur.next = a
-		a = a.next
-		cur = cur.next
 	}
-	for b != nil {
+	if b != nil {
 		cur.next = b
-		b = b.next
-		cur = cur.next
 	}
 	return l.next
 }
